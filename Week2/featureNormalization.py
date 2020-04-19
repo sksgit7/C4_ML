@@ -1,16 +1,13 @@
 import numpy as np
-def featureNormalization(X):
+def computeCost(X,y,theta):
     """
-    Take in numpy array of X values and return normalize X values,
-    the mean and standard deviation of each feature
-
-    np.mean(A)==> returns mean of all the elements of A
-
-    np.std(A)==> returns the standard deviation of the elements of A
+    Take in a numpy array X,y, theta and generate the cost function using theta as parameter in a linear regression model
     """
-    mean=
-    std=
+    # np.dot(A,B) => gives dot product of A and B
+    # np.power(A,n) => returns array with each element raised to the power n
+    # np.sum(A) => Returns scalar with every element in A summed up
+    m=len(y)
+    predictions= np.dot(X,theta)
+    square_err= np.power(predictions-y,2)
     
-    X_norm = (X - mean)/std
-    
-    return X_norm
+    return 1/(2*m) * np.sum(square_err)
