@@ -8,9 +8,11 @@ def costFunction(theta, X, y):
     use the sigmoid function that's being imported above 
     '''
     m = y.size
-    h =
+    theta=theta.reshape(-1,1)
+    h = sigmoid(np.dot(X,theta))
 
-    J =
+    J = -(1/m*(np.sum(np.dot(np.log(h).T,y))+ np.dot(np.log((1-h)).T,(1-y))))
+    #J = -(1/m*(np.sum((y*np.log(h))),(1-y)*np.log((1-h))))
 
     if np.isnan(J[0]):
         return(np.inf)
@@ -18,11 +20,11 @@ def costFunction(theta, X, y):
 
 
 def gradient(theta, X, y):
-	'''' calculate gradient descent for logistic regression'''
-	m = y.size
+    '''' calculate gradient descent for logistic regression'''
+    m = y.size
     theta=theta.reshape(-1,1)
-	h = 
-    
-	grad =
+    h = sigmoid(np.dot(X,theta))
 
-	return(grad.flatten())			# returns copy of array in one dimension
+    grad = 1/m*(np.dot(X.T,(h-y)))
+
+    return(grad.flatten())			# returns copy of array in one dimension
