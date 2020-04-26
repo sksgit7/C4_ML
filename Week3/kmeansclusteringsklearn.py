@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
+#import seaborn as sns
 from sklearn.cluster import KMeans
 
 data=pd.read_csv('ex2data3.csv')                                                                        #Reading in the data to be tested
@@ -40,3 +40,12 @@ plt.ylabel('WCSS')
 plt.show()
 
 '''Take the x_scaled data and fit it into a cluster of size four and check the result'''
+kmeans=KMeans(4)
+kmeans.fit(x_scaled)
+print(kmeans.inertia_)
+clusters=x.copy()                                                                                       #copying the data from processed x so as to not change the values of x
+clusters['Cluster_pred']=kmeans.fit_predict(x)                                                          # adding a new column to cluster and predicting the cluster the value belongs to
+plt.scatter(clusters['Satisfaction'],clusters['Loyalty'],c=clusters['Cluster_pred'],cmap='rainbow')     #plotting out the cluster
+plt.xlabel('Satisfaction')
+plt.ylabel('Loyalty')
+plt.show()
