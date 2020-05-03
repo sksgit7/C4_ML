@@ -18,8 +18,8 @@ Two line code to train entire dataset
 load the LinearSVC() model into clf
 and then fit hog_features and list into clf
 '''
-clf =
-
+clf = LinearSVC()
+clf.fit(hog_features, labels)
 
 print('Accuracy is:',clf.score(hog_features,labels)*100,'%')
 joblib.dump(clf, "digits_cls.pkl", compress=3)                                                                                             #storing the model into a file called 'digits_cls.pkl'
